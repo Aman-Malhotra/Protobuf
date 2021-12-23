@@ -14,7 +14,6 @@ app.post("/sign_in", (req, res) => {
     try {
         buf = req.body
         reqArray = buf.toString()
-        console.log(reqArray)
         reqArray = reqArray.substring(1, reqArray.length - 1)
         let bin = reqArray.split(", ")
         const request = new schema.SignIn.deserializeBinary(bin);
@@ -35,6 +34,14 @@ app.post("/sign_in", (req, res) => {
     } catch (err) {
         res.send('From Express: Error ' + err)
     }
+});
+
+app.post("/proto_test", (req, res) => {
+    buf = req.body
+    reqArray = buf.toString()
+    reqArray = reqArray.substring(1, reqArray.length - 1)
+    let bin = reqArray.split(", ")
+    res.send(Buffer.from(bin))
 });
 
 const port = 4000;
